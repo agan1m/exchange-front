@@ -135,11 +135,7 @@ export function request(url, options, baseUrl = AppSettings.webApiUrl) {
     });
 }
 
-export function multipartRequest(
-  url,
-  options,
-  baseUrl = AppSettings.webApiUrl,
-) {
+export function multipartRequest(url, options, baseUrl = AppSettings.webApiUrl) {
   const token = auth.getToken();
 
   options.credentials = 'include';

@@ -39,14 +39,8 @@ class RegistrationPage extends Component {
         </Helmet>
         <div>
           <p>Регистрация</p>
-          <Input
-            value={email}
-            onChange={ev => this._handleOnChange(ev, 'email')}
-          />
-          <Input
-            value={password}
-            onChange={ev => this._handleOnChange(ev, 'password')}
-          />
+          <Input value={email} onChange={ev => this._handleOnChange(ev, 'email')} />
+          <Input value={password} onChange={ev => this._handleOnChange(ev, 'password')} />
           <button type="button" onClick={this._handleSubmit}>
             Зарегестрироваться
           </button>

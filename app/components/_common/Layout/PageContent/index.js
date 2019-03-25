@@ -8,9 +8,7 @@ const StyledContainer = styled.div`
   padding: 0 1rem;
   background-color: grey;
 `;
-const PageContent = props => (
-  <StyledContainer>{props.children}</StyledContainer>
-);
+const PageContent = props => <StyledContainer>{props.children}</StyledContainer>;
 
 PageContent.propTypes = {
   children: PropTypes.any.isRequired,

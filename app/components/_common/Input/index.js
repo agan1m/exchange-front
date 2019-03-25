@@ -3,7 +3,7 @@ import { InputWrapper } from './wrappers';
 /* eslint-disable */
 class Input extends Component {
   render() {
-    return <InputWrapper type="text" />;
+    return <InputWrapper type="text" {...this.props}/>;
   }
 }
 

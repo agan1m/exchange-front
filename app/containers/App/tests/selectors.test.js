@@ -79,8 +79,6 @@ describe('makeSelectLocation', () => {
     const mockedState = fromJS({
       router: { location: { pathname: '/foo' } },
     });
-    expect(locationStateSelector(mockedState)).toEqual(
-      mockedState.getIn(['router', 'location']).toJS(),
-    );
+    expect(locationStateSelector(mockedState)).toEqual(mockedState.getIn(['router', 'location']).toJS());
   });
 });
