@@ -18,14 +18,17 @@ import NotFoundPage from '../NotFoundPage';
 import { makeSelectCurrentUser } from './selectors';
 import GlobalStyle from '../../global-styles';
 import AuthRoute from '../Routes/AuthRoute';
+import ProtectRoute from '../Routes/ProtectedRoute';
 import AuthPage from '../AuthPage';
 import RegistrationPage from '../RegistrationPage';
+import HomePage from '../HomePage';
 
 const AppWrapper = styled.div`
   display: flex;
   min-height: 100vh;
   position: relative;
   flex-direction: column;
+  background-color: #f5f5f6;
 `;
 
 const MainWrapper = styled.div`
@@ -39,20 +42,14 @@ class App extends React.Component {
     return (
       <>
         <AppWrapper>
-          <Helmet
-            titleTemplate="%s - Агентский Портал"
-            defaultTitle="Агентский Портал"
-          >
+          <Helmet titleTemplate="%s - Агентский Портал" defaultTitle="Агентский Портал">
             <meta name="description" content="Агентский Портал" />
           </Helmet>
           <MainWrapper>
             <Switch>
-              <AuthRoute exact path="/" component={AuthPage} />
-              <AuthRoute
-                exact
-                path="/registration"
-                component={RegistrationPage}
-              />
+              <AuthRoute exact path="/login" component={AuthPage} />
+              <AuthRoute exact path="/registration" component={RegistrationPage} />
+              <ProtectRoute path="/home" component={HomePage} />
               <Route component={NotFoundPage} />
             </Switch>
           </MainWrapper>

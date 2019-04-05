@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { Helmet } from 'react-helmet';
 import injectReducer from '../../utils/injectReducer';
@@ -12,40 +11,19 @@ import reducer from './reducer';
 import { makeSelectRegistrationPage } from './selectors';
 import { registrationRequest, registrationChangeForm } from './actions';
 import PageContent from '../../components/_common/Layout/PageContent';
-import Input from '../../components/_common/Input';
-
+import AuthForm from '../../components/Auth/AuthForm';
+/* eslint-disable */
 class RegistrationPage extends Component {
-  _handleSubmit = () => {
-    const { registrationRequest, registrationPage } = this.props;
-    registrationRequest(registrationPage.regForm);
-  };
-
-  _handleOnChange(ev, attr) {
-    const { registrationChangeForm, registrationPage } = this.props;
-    const { regForm } = registrationPage;
-
-    registrationChangeForm({ ...regForm, [attr]: ev.target.value });
-  }
-
   render() {
-    const { registrationPage } = this.props;
+    const { registrationPage, registrationRequest, registrationChangeForm } = this.props;
     const { regForm } = registrationPage;
-    const { email, password } = regForm;
     return (
       <PageContent>
         <Helmet>
           <title>Регистрация</title>
-          <meta name="description" content="Description of LoginPage" />
+          <meta name="description" content="Description of RegistrationPage" />
         </Helmet>
-        <div>
-          <p>Регистрация</p>
-          <Input value={email} onChange={ev => this._handleOnChange(ev, 'email')} />
-          <Input value={password} onChange={ev => this._handleOnChange(ev, 'password')} />
-          <button type="button" onClick={this._handleSubmit}>
-            Зарегестрироваться
-          </button>
-          <Link to="/">Авторизоваться</Link>
-        </div>
+        <AuthForm onChange={registrationChangeForm} onSubmit={registrationRequest} {...regForm} />
       </PageContent>
     );
   }
