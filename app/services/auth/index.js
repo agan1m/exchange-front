@@ -11,4 +11,14 @@ export default class ApiService {
     };
     return request(URL.REGISTRATION, options);
   };
+
+  static login = form => {
+    const options = {
+      method: 'POST',
+      body: {
+        ...form,
+      },
+    };
+    return request(URL.LOGIN, options);
+  };
 }

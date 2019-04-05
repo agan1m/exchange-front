@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import history from 'apphistory';
 import { REGISTRATION_REQUEST } from './constants';
-import ApiService from '../../services/registration';
+import ApiService from '../../services/auth';
 import { registrationFailure, registrationSuccess } from './actions';
 
 export default function* registrationSagaFlow() {

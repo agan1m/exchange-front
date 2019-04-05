@@ -2,7 +2,7 @@ class AppSettings {
   static get webApiUrl() {
     switch (process.env.NODE_ENV) {
       case 'development':
-        return 'http://localhost:6001';
+        return 'http://localhost:8080';
       case 'production':
         return `${window.location.protocol}//${window.location.host}`;
       default:
