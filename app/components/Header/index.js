@@ -1,30 +1,54 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
-import A from './A';
-import Img from './Img';
+import Img from '../Footer/Img';
 import NavBar from './NavBar';
-import HeaderLink from './HeaderLink';
-import Banner from './banner.jpg';
-import messages from './messages';
+import HeaderLink from '../Footer/HeaderLink';
+import { FooterWrap, A } from '../Footer/Wrapper';
+import logo from '../../images/Logo-white.svg';
+import {
+  CourseWrap,
+  CourseItem,
+  HeaderContainer,
+  PersonalInfoContainer,
+  PersonalItem,
+  PersonalItemEmail,
+} from './Wrappers';
 
 /* eslint-disable react/prefer-stateless-function */
 class Header extends React.Component {
   render() {
     return (
-      <div>
-        <A href="https://twitter.com/mxstbr">
-          <Img src={Banner} alt="react-boilerplate - Logo" />
-        </A>
-        <NavBar>
-          <HeaderLink to="/">
-            <FormattedMessage {...messages.home} />
-          </HeaderLink>
-          <HeaderLink to="/features">
-            <FormattedMessage {...messages.features} />
-          </HeaderLink>
-        </NavBar>
-      </div>
+      <FooterWrap>
+        <HeaderContainer>
+          <A to="/">
+            <Img src={logo} alt="Logo" />
+          </A>
+          <NavBar>
+            <HeaderLink to="/">Главная</HeaderLink>
+          </NavBar>
+          <CourseWrap>
+            <CourseItem>
+              <p className="aa">
+                <span>4 277,5</span>
+                <br />
+                1BTC
+              </p>
+            </CourseItem>
+            <CourseItem>
+              <p className="aa">
+                <span>290</span>
+                <br />
+                1ETC
+              </p>
+            </CourseItem>
+          </CourseWrap>
+          <PersonalInfoContainer>
+            <PersonalItem>Лента</PersonalItem>
+            <PersonalItem>3 место</PersonalItem>
+            <PersonalItemEmail>marsov-v@mail.ru</PersonalItemEmail>
+          </PersonalInfoContainer>
+        </HeaderContainer>
+      </FooterWrap>
     );
   }
 }

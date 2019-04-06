@@ -9,7 +9,8 @@ import injectReducer from '../../utils/injectReducer';
 import saga from './saga'; */
 import reducer from './reducer';
 import { makeSelectHomePage } from './selectors';
-import PageContent from '../../components/_common/Layout/PageContent';
+import PageContent from '../../components/_common/Layout/PageContent/AuthPageContent';
+import NavContainer from '../NavContainer';
 
 class HomePage extends Component {
   _handleSubmit = () => {
@@ -19,15 +20,19 @@ class HomePage extends Component {
 
   render() {
     return (
-      <PageContent>
-        <Helmet>
-          <title>Главная</title>
-          <meta name="description" content="Description of HomePage" />
-        </Helmet>
-        <div>
-          <h1>Главная</h1>
-        </div>
-      </PageContent>
+      <>
+        <NavContainer header />
+        <PageContent>
+          <Helmet>
+            <title>Главная</title>
+            <meta name="description" content="Description of HomePage" />
+          </Helmet>
+          <div>
+            <h1>Главная</h1>
+          </div>
+        </PageContent>
+        <NavContainer />
+      </>
     );
   }
 }

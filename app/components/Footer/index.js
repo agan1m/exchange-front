@@ -1,30 +1,33 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
+import NavBar from './NavBar';
+import HeaderLink from './HeaderLink';
+import Img from './Img';
+import { FooterWrap, Container, A } from './Wrapper';
+import logo from '../../images/Logo-white.svg';
 
-import A from 'components/A';
-import LocaleToggle from 'containers/LocaleToggle';
-import Wrapper from './Wrapper';
-import messages from './messages';
-
-function Footer() {
+function Footer({ menu = [] }) {
   return (
-    <Wrapper>
-      <section>
-        <FormattedMessage {...messages.licenseMessage} />
-      </section>
-      <section>
-        <LocaleToggle />
-      </section>
-      <section>
-        <FormattedMessage
-          {...messages.authorMessage}
-          values={{
-            author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
-          }}
-        />
-      </section>
-    </Wrapper>
+    <FooterWrap>
+      <Container>
+        <A to="/">
+          <Img src={logo} alt="Logo" />
+        </A>
+        <NavBar>
+          {menu.map(item => (
+            <HeaderLink key={item.name} to={item.link}>
+              {item.name}
+            </HeaderLink>
+          ))}
+        </NavBar>
+        <p>Copyright</p>
+      </Container>
+    </FooterWrap>
   );
 }
+
+Footer.propTypes = {
+  menu: PropTypes.array,
+};
 
 export default Footer;
