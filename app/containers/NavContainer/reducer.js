@@ -4,7 +4,12 @@ import { fromJS } from 'immutable';
 export const initialState = fromJS({
   loading: false,
   error: false,
-  menu: [{ name: 'Главная', link: '/' }, { name: 'Торги', link: '/trade' }, { name: 'Лента', link: '/feed' }],
+  menu: [
+    { name: 'Главная', link: '/' },
+    { name: 'Торги', link: '/trade' },
+    { name: 'Лента', link: '/feed' },
+    { name: 'Профиль', link: '/profile' },
+  ],
 });
 
 function navReducer(state = initialState, action) {

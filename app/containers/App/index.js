@@ -22,6 +22,7 @@ import ProtectRoute from '../Routes/ProtectedRoute';
 import AuthPage from '../AuthPage';
 import RegistrationPage from '../RegistrationPage';
 import HomePage from '../HomePage';
+import ProfilePage from '../ProfilePage';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -50,6 +51,7 @@ class App extends React.Component {
               <AuthRoute exact path="/login" component={AuthPage} />
               <AuthRoute exact path="/registration" component={RegistrationPage} />
               <ProtectRoute path="/home" component={HomePage} />
+              <ProtectRoute path="/profile" component={ProfilePage} />
               <Route component={NotFoundPage} />
             </Switch>
           </MainWrapper>
