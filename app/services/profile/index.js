@@ -1,4 +1,4 @@
-import { request } from '../../utils/request';
+import { request, multipartRequest } from '../../utils/request';
 import URL from './constants';
 
 export default class ApiService {
@@ -10,5 +10,15 @@ export default class ApiService {
       },
     };
     return request(URL.CAHNGE_INFO, options);
+  };
+
+  static uploadImage = file => {
+    const formData = new FormData();
+    formData.append('file', file);
+    const options = {
+      method: 'POST',
+      body: formData,
+    };
+    return multipartRequest(URL.UPLOAD_IMAGE, options);
   };
 }

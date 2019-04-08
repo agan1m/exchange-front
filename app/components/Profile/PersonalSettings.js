@@ -12,6 +12,7 @@ class PersonalSettings extends Component {
     };
     this.changeName = React.createRef();
     this.changeSecondName = React.createRef();
+    this.fileInput = React.createRef();
   }
 
   _handlerChangeName = (ev, attr) => {
@@ -26,6 +27,16 @@ class PersonalSettings extends Component {
     this.setState({ [attr]: false }, () => changeInfoRequest(form));
   };
 
+  _handlerClickUpload = () => {
+    this.fileInput.current.click();
+  };
+
+  _handlerUploadRequest = ev => {
+    const { uploadImageRequest } = this.props;
+
+    uploadImageRequest(ev.currentTarget.files[0]);
+  };
+
   render() {
     const { changeName, changeSecondName } = this.state;
     return (
@@ -35,7 +46,8 @@ class PersonalSettings extends Component {
           <div>
             <img src={ava} alt="avatar" />
             <p style={{ textAlign: 'center' }}>
-              <ChangeLink>Изменить аватар</ChangeLink>
+              <ChangeLink onClick={this._handlerClickUpload}>Изменить аватар</ChangeLink>
+              <input hidden type="file" ref={this.fileInput} onChange={this._handlerUploadRequest} />
             </p>
           </div>
           <PersonalInfo>
@@ -67,6 +79,7 @@ class PersonalSettings extends Component {
 
 PersonalSettings.propTypes = {
   changeInfoRequest: PropType.func,
+  uploadImageRequest: PropType.func,
 };
 
 export default PersonalSettings;

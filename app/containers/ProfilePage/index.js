@@ -12,7 +12,7 @@ import { makeSelectProfilePage } from './selectors';
 import PageContent from '../../components/_common/Layout/PageContent/AuthPageContent';
 import NavContainer from '../NavContainer';
 import Profile from '../../components/Profile';
-import { changeInfoRequest } from './actions';
+import { changeInfoRequest, uploadImageRequest } from './actions';
 
 class ProfilePage extends Component {
   _handleSubmit = () => {
@@ -21,7 +21,7 @@ class ProfilePage extends Component {
   };
 
   render() {
-    const { changeInfoRequest } = this.props;
+    const { changeInfoRequest, uploadImageRequest } = this.props;
     return (
       <Fragment>
         <NavContainer header />
@@ -30,7 +30,7 @@ class ProfilePage extends Component {
             <title>Профиль</title>
             <meta name="description" content="Description of ProfilePage" />
           </Helmet>
-          <Profile changeInfoRequest={changeInfoRequest} />
+          <Profile changeInfoRequest={changeInfoRequest} uploadImageRequest={uploadImageRequest} />
         </PageContent>
         <NavContainer />
       </Fragment>
@@ -41,6 +41,7 @@ class ProfilePage extends Component {
 ProfilePage.propTypes = {
   profilePage: PropTypes.object,
   changeInfoRequest: PropTypes.func,
+  uploadImageRequest: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -50,6 +51,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     changeInfoRequest: ev => dispatch(changeInfoRequest(ev)),
+    uploadImageRequest: ev => dispatch(uploadImageRequest(ev)),
   };
 }
 const withConnect = connect(
