@@ -2,6 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { CHANGE_INFO_REQUEST, UPLOAD_IMAGE_REQUEST } from './constants';
 import ApiService from '../../services/profile';
 import { changeInfoFailure, changeInfoSuccess, uploadImageSuccess, uploadImageFailure } from './actions';
+import { setUser } from '../App/actions';
 
 export default function* profileSagaFlow() {
   yield takeLatest(CHANGE_INFO_REQUEST, profileSaga);
@@ -13,6 +14,7 @@ function* profileSaga(action) {
     const response = yield call(ApiService.changeInfo, action.payload);
     if (response.isSuccess) {
       yield put(changeInfoSuccess());
+      yield put(setUser(response.data));
     } else {
       yield put(changeInfoFailure(response.message));
     }
@@ -26,6 +28,7 @@ function* uploadImageSaga(action) {
     const response = yield call(ApiService.uploadImage, action.file);
     if (response.isSuccess) {
       yield put(uploadImageSuccess());
+      yield put(setUser(response.data));
     } else {
       yield put(uploadImageFailure(response.message));
     }

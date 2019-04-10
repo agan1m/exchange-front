@@ -4,9 +4,9 @@ import PersonalSettings from './PersonalSettings';
 import BillInfo from './BillInfo';
 import { ProfileContainer } from './Wrappers';
 
-const Profile = ({ changeInfoRequest, uploadImageRequest }) => (
+const Profile = ({ changeInfoRequest, uploadImageRequest, user }) => (
   <ProfileContainer>
-    <PersonalSettings changeInfoRequest={changeInfoRequest} uploadImageRequest={uploadImageRequest} />
+    <PersonalSettings user={user} changeInfoRequest={changeInfoRequest} uploadImageRequest={uploadImageRequest} />
     <BillInfo />
   </ProfileContainer>
 );
@@ -14,6 +14,7 @@ const Profile = ({ changeInfoRequest, uploadImageRequest }) => (
 Profile.propTypes = {
   changeInfoRequest: PropTypes.func,
   uploadImageRequest: PropTypes.func,
+  user: PropTypes.object,
 };
 
 export default Profile;

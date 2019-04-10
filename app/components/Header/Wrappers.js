@@ -38,6 +38,10 @@ export const PersonalItem = styled.p`
   padding: 2px 30px;
   font-weight: 400;
   cursor: pointer;
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
 `;
 
 export const PersonalItemEmail = styled(PersonalItem)`

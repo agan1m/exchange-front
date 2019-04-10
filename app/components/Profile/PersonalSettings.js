@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropType from 'prop-types';
 import { Title, PersonalWrap, PersonalContainer, PersonalInfo, ChangeLink, InputWrap } from './Wrappers';
-import ava from '!file-loader?name=[name].[ext]!../../images/ava.png';
+// import ava from '!file-loader?name=[name].[ext]!../../images/ava.png';
 
 class PersonalSettings extends Component {
   constructor(props) {
@@ -38,13 +38,15 @@ class PersonalSettings extends Component {
   };
 
   render() {
+    const { user } = this.props;
+    const { name, secondname, avatar, email } = user;
     const { changeName, changeSecondName } = this.state;
     return (
       <PersonalContainer>
         <Title>Личный профиль</Title>
         <PersonalWrap>
           <div>
-            <img src={ava} alt="avatar" />
+            <img src={avatar} alt="avatar" />
             <p style={{ textAlign: 'center' }}>
               <ChangeLink onClick={this._handlerClickUpload}>Изменить аватар</ChangeLink>
               <input hidden type="file" ref={this.fileInput} onChange={this._handlerUploadRequest} />
@@ -52,7 +54,7 @@ class PersonalSettings extends Component {
           </div>
           <PersonalInfo>
             <p style={{ display: `${changeName ? 'none' : 'block'}` }}>
-              Константин <ChangeLink onClick={val => this._handlerChangeName(val, 'changeName')}>изменить</ChangeLink>
+              {name || ''} <ChangeLink onClick={val => this._handlerChangeName(val, 'changeName')}>изменить</ChangeLink>
             </p>
             <InputWrap
               hidden={!changeName}
@@ -60,7 +62,7 @@ class PersonalSettings extends Component {
               ref={this.changeName}
             />
             <p style={{ display: `${changeSecondName ? 'none' : 'block'}` }}>
-              Константин{' '}
+              {secondname || ''}{' '}
               <ChangeLink onClick={val => this._handlerChangeName(val, 'changeSecondName')}>изменить</ChangeLink>
             </p>
             <InputWrap
@@ -69,7 +71,7 @@ class PersonalSettings extends Component {
               ref={this.changeSecondName}
             />
 
-            <p>marsov-v@mail.ru</p>
+            <p>{email || ''}</p>
           </PersonalInfo>
         </PersonalWrap>
       </PersonalContainer>
@@ -80,6 +82,7 @@ class PersonalSettings extends Component {
 PersonalSettings.propTypes = {
   changeInfoRequest: PropType.func,
   uploadImageRequest: PropType.func,
+  user: PropType.object,
 };
 
 export default PersonalSettings;

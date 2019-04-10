@@ -14,6 +14,7 @@ import { createStructuredSelector } from 'reselect';
 import injectSaga from 'utils/injectSaga';
 import { compose } from 'redux';
 import saga from './saga';
+import reducer from './reducer';
 import NotFoundPage from '../NotFoundPage';
 import { makeSelectCurrentUser } from './selectors';
 import GlobalStyle from '../../global-styles';
@@ -23,6 +24,7 @@ import AuthPage from '../AuthPage';
 import RegistrationPage from '../RegistrationPage';
 import HomePage from '../HomePage';
 import ProfilePage from '../ProfilePage';
+import injectReducer from '../../utils/injectReducer';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -78,10 +80,11 @@ const withConnect = connect(
   // mapDispatchToProps,
 );
 const withSaga = injectSaga({ key: 'global', saga });
-const withReducer = null;
+const withReducer = injectReducer({ key: 'global', reducer });
 
 export default withRouter(
   compose(
+    withReducer,
     withSaga,
     withConnect,
   )(App),

@@ -11,12 +11,13 @@
  */
 
 import { fromJS } from 'immutable';
+import { SET_USER } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
   loading: false,
   error: false,
-  currentUser: false,
+  user: {},
   userData: {
     repositories: false,
   },
@@ -24,6 +25,8 @@ const initialState = fromJS({
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
+    case SET_USER:
+      return state.set('user', action.user);
     default:
       return state;
   }

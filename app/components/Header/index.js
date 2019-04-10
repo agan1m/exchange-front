@@ -1,5 +1,6 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Img from '../Footer/Img';
 import NavBar from './NavBar';
 import HeaderLink from '../Footer/HeaderLink';
@@ -17,6 +18,7 @@ import {
 /* eslint-disable react/prefer-stateless-function */
 class Header extends React.Component {
   render() {
+    const { email } = this.props;
     return (
       <FooterWrap>
         <HeaderContainer>
@@ -24,7 +26,7 @@ class Header extends React.Component {
             <Img src={logo} alt="Logo" />
           </A>
           <NavBar>
-            <HeaderLink to="/">Главная</HeaderLink>
+            <HeaderLink to="/trade">Торги</HeaderLink>
           </NavBar>
           <CourseWrap>
             <CourseItem>
@@ -43,14 +45,24 @@ class Header extends React.Component {
             </CourseItem>
           </CourseWrap>
           <PersonalInfoContainer>
-            <PersonalItem>Лента</PersonalItem>
-            <PersonalItem>3 место</PersonalItem>
-            <PersonalItemEmail>marsov-v@mail.ru</PersonalItemEmail>
+            <PersonalItem>
+              <Link to="/feed">Лента</Link>
+            </PersonalItem>
+            <PersonalItem>
+              <Link to="/places">3 место</Link>
+            </PersonalItem>
+            <PersonalItemEmail>
+              <Link to="/profile">{email}</Link>
+            </PersonalItemEmail>
           </PersonalInfoContainer>
         </HeaderContainer>
       </FooterWrap>
     );
   }
 }
+
+Header.propTypes = {
+  email: PropTypes.string,
+};
 
 export default Header;
