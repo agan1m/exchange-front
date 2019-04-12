@@ -3,6 +3,8 @@ import history from 'apphistory';
 import { REGISTRATION_REQUEST } from './constants';
 import ApiService from '../../services/auth';
 import { registrationFailure, registrationSuccess } from './actions';
+import auth from '../../utils/auth';
+import { setUser } from '../App/actions';
 
 export default function* registrationSagaFlow() {
   yield takeLatest(REGISTRATION_REQUEST, registrationSaga);
@@ -11,9 +13,11 @@ export default function* registrationSagaFlow() {
 function* registrationSaga(action) {
   try {
     const response = yield call(ApiService.registration, action.form);
-    if (response.success) {
+    if (response.isSuccess) {
+      auth.setToken(response.data.token);
       yield put(registrationSuccess());
-      history.push('/');
+      yield put(setUser({ user: response.data.user, bill: response.data.bill }));
+      history.push('/home');
     } else {
       yield put(registrationFailure(response.message));
     }

@@ -1,6 +1,6 @@
 import { SET_USER } from './constants';
 
-export const setUser = user => ({
+export const setUser = payload => ({
   type: SET_USER,
-  user,
+  payload,
 });

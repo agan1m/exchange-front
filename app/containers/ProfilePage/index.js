@@ -13,7 +13,7 @@ import PageContent from '../../components/_common/Layout/PageContent/AuthPageCon
 import NavContainer from '../NavContainer';
 import Profile from '../../components/Profile';
 import { changeInfoRequest, uploadImageRequest } from './actions';
-import { makeSelectCurrentUser } from '../App/selectors';
+import { makeSelectCurrentUser, makeSelectBill } from '../App/selectors';
 
 class ProfilePage extends Component {
   _handleSubmit = () => {
@@ -22,7 +22,7 @@ class ProfilePage extends Component {
   };
 
   render() {
-    const { changeInfoRequest, uploadImageRequest, user } = this.props;
+    const { changeInfoRequest, uploadImageRequest, user, bill } = this.props;
     return (
       <Fragment>
         <NavContainer header />
@@ -31,7 +31,12 @@ class ProfilePage extends Component {
             <title>Профиль</title>
             <meta name="description" content="Description of ProfilePage" />
           </Helmet>
-          <Profile changeInfoRequest={changeInfoRequest} user={user} uploadImageRequest={uploadImageRequest} />
+          <Profile
+            changeInfoRequest={changeInfoRequest}
+            bill={bill}
+            user={user}
+            uploadImageRequest={uploadImageRequest}
+          />
         </PageContent>
         <NavContainer />
       </Fragment>
@@ -42,6 +47,7 @@ class ProfilePage extends Component {
 ProfilePage.propTypes = {
   profilePage: PropTypes.object,
   user: PropTypes.object,
+  bill: PropTypes.object,
   changeInfoRequest: PropTypes.func,
   uploadImageRequest: PropTypes.func,
 };
@@ -49,6 +55,7 @@ ProfilePage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   profilePage: makeSelectProfilePage(),
   user: makeSelectCurrentUser(),
+  bill: makeSelectBill(),
 });
 
 function mapDispatchToProps(dispatch) {

@@ -18,15 +18,13 @@ const initialState = fromJS({
   loading: false,
   error: false,
   user: {},
-  userData: {
-    repositories: false,
-  },
+  bill: {},
 });
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
-      return state.set('user', action.user);
+      return state.set('user', action.payload.user).set('bill', action.payload.bill);
     default:
       return state;
   }
