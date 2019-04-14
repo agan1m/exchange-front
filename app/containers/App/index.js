@@ -4,7 +4,7 @@
  *
  */
 /* eslint-disable */
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 // import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
@@ -24,6 +24,8 @@ import AuthPage from '../AuthPage';
 import RegistrationPage from '../RegistrationPage';
 import HomePage from '../HomePage';
 import ProfilePage from '../ProfilePage';
+import FeedPage from '../FeedPage';
+import TradePage from '../TradePage';
 import injectReducer from '../../utils/injectReducer';
 
 const AppWrapper = styled.div`
@@ -40,13 +42,13 @@ const MainWrapper = styled.div`
   min-height: calc(100vh - 78px);
 `;
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
-      <>
+      <Fragment>
         <AppWrapper>
-          <Helmet titleTemplate="%s - Агентский Портал" defaultTitle="Агентский Портал">
-            <meta name="description" content="Агентский Портал" />
+          <Helmet titleTemplate="%s - J-Trading" defaultTitle="J-Trading">
+            <meta name="description" content="J-Trading" />
           </Helmet>
           <MainWrapper>
             <Switch>
@@ -54,12 +56,14 @@ class App extends React.Component {
               <AuthRoute exact path="/registration" component={RegistrationPage} />
               <ProtectRoute path="/home" component={HomePage} />
               <ProtectRoute path="/profile" component={ProfilePage} />
+              <ProtectRoute path="/feed" component={FeedPage} />
+              <ProtectRoute path="/trade" component={TradePage} />
               <Route component={NotFoundPage} />
             </Switch>
           </MainWrapper>
           <GlobalStyle />
         </AppWrapper>
-      </>
+      </Fragment>
     );
   }
 }

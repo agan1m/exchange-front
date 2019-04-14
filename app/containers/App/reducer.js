@@ -12,6 +12,7 @@
 
 import { fromJS } from 'immutable';
 import { SET_USER } from './constants';
+import { LOGOUT } from '../NavContainer/constants';
 
 // The initial state of the App
 const initialState = fromJS({
@@ -24,7 +25,11 @@ const initialState = fromJS({
 function appReducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
-      return state.set('user', action.payload.user).set('bill', action.payload.bill);
+      return state
+        .set('user', action.payload.user)
+        .set('bill', action.payload.bill ? action.payload.bill : state.get('bill'));
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropType from 'prop-types';
 import { Title, PersonalWrap, PersonalContainer, PersonalInfo, ChangeLink, InputWrap } from './Wrappers';
-// import ava from '!file-loader?name=[name].[ext]!../../images/ava.png';
+import ava from '!file-loader?name=[name].[ext]!../../images/ava.png';
+import AppSettings from '../../appSettings';
 
 class PersonalSettings extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class PersonalSettings extends Component {
         <Title>Личный профиль</Title>
         <PersonalWrap>
           <div>
-            <img src={avatar} alt="avatar" />
+            <img src={avatar ? `${AppSettings.webApiUrl}/${avatar}` : ava} alt="avatar" />
             <p style={{ textAlign: 'center' }}>
               <ChangeLink onClick={this._handlerClickUpload}>Изменить аватар</ChangeLink>
               <input hidden type="file" ref={this.fileInput} onChange={this._handlerUploadRequest} />

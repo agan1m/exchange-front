@@ -6,7 +6,7 @@ const StyledContainer = styled.div`
   max-width: 1600px;
   margin: 0 auto;
   padding: 0 1rem;
-  height: 80vh;
+  min-height: 80vh;
   display: flex;
 `;
 const PageContent = props => <StyledContainer>{props.children}</StyledContainer>;

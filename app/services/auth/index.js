@@ -21,4 +21,11 @@ export default class ApiService {
     };
     return request(URL.LOGIN, options);
   };
+
+  static logout = () => {
+    const options = {
+      method: 'POST',
+    };
+    return request(URL.LOGOUT, options);
+  };
 }

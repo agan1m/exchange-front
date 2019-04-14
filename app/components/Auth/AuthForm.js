@@ -33,7 +33,7 @@ class AuthForm extends Component {
             onChange={ev => this._handleOnChange(ev, 'password')}
           />
           <FormBtn type="button" onClick={this._handleSubmit}>
-            Войти
+            {isLogin ? 'Войти' : 'Зарегестрироваться'}
           </FormBtn>
         </FormWrap>
         {isLogin ? (

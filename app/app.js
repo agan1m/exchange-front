@@ -18,6 +18,7 @@ import history from './apphistory';
 import App from './containers/App/Loadable';
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import configureStore from './configureStore';
+import 'antd/dist/antd.css';
 
 // import 'imports-loader?this=>window!../external_utils/pubsub';
 

@@ -14,7 +14,7 @@ function* profileSaga(action) {
     const response = yield call(ApiService.changeInfo, action.payload);
     if (response.isSuccess) {
       yield put(changeInfoSuccess());
-      yield put(setUser(response.data));
+      yield put(setUser({ user: response.data }));
     } else {
       yield put(changeInfoFailure(response.message));
     }
@@ -28,7 +28,7 @@ function* uploadImageSaga(action) {
     const response = yield call(ApiService.uploadImage, action.file);
     if (response.isSuccess) {
       yield put(uploadImageSuccess());
-      yield put(setUser(response.data));
+      yield put(setUser({ user: response.data }));
     } else {
       yield put(uploadImageFailure(response.message));
     }

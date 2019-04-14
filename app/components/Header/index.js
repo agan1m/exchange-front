@@ -13,12 +13,14 @@ import {
   PersonalInfoContainer,
   PersonalItem,
   PersonalItemEmail,
+  LogoutBtn,
+  DropdownContent,
 } from './Wrappers';
 
 /* eslint-disable react/prefer-stateless-function */
 class Header extends React.Component {
   render() {
-    const { email } = this.props;
+    const { email, logOut } = this.props;
     return (
       <FooterWrap>
         <HeaderContainer>
@@ -30,14 +32,14 @@ class Header extends React.Component {
           </NavBar>
           <CourseWrap>
             <CourseItem>
-              <p className="aa">
+              <p>
                 <span>4 277,5</span>
                 <br />
                 1BTC
               </p>
             </CourseItem>
             <CourseItem>
-              <p className="aa">
+              <p>
                 <span>290</span>
                 <br />
                 1ETC
@@ -53,6 +55,11 @@ class Header extends React.Component {
             </PersonalItem>
             <PersonalItemEmail>
               <Link to="/profile">{email}</Link>
+              <DropdownContent>
+                <LogoutBtn type="button" onClick={logOut}>
+                  Выйти
+                </LogoutBtn>
+              </DropdownContent>
             </PersonalItemEmail>
           </PersonalInfoContainer>
         </HeaderContainer>
@@ -63,6 +70,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   email: PropTypes.string,
+  logOut: PropTypes.func,
 };
 
 export default Header;

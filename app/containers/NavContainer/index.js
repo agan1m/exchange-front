@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -9,19 +9,21 @@ import { makeSelectNav } from './selectors';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { makeSelectCurrentUser } from '../App/selectors';
-
+import { logOut } from './actions';
+/* eslint-disable */
 class NavContainer extends Component {
   render() {
-    const { navContainer, header, user } = this.props;
+    const { navContainer, header, user, logOut } = this.props;
     const { menu } = navContainer;
-    return <>{header ? <Header email={user.email} /> : <Footer menu={menu} />}</>;
+    return <Fragment>{header ? <Header email={user.email} logOut={logOut} /> : <Footer menu={menu} />}</Fragment>;
   }
 }
-
+/* eslint-enable */
 NavContainer.propTypes = {
   navContainer: PropTypes.object,
   user: PropTypes.object,
   header: PropTypes.bool,
+  logOut: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -29,7 +31,16 @@ const mapStateToProps = createStructuredSelector({
   user: makeSelectCurrentUser(),
 });
 
-const withConnect = connect(mapStateToProps);
+function mapDispatchToProps(dispatch) {
+  return {
+    logOut: () => dispatch(logOut()),
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 const withReducer = injectReducer({ key: 'navContainer', reducer });
 
 export default compose(
