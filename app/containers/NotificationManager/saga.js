@@ -36,7 +36,7 @@ function* socketSaga() {
     const socketChannel = yield call(createSocketChannel, socket);
     while (true) {
       const { payload } = yield take(socketChannel);
-
+      console.log(payload);
       yield put(newPost(payload));
     }
   } catch (error) {

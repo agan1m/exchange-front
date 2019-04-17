@@ -4,6 +4,9 @@ import {
   FEED_LIST_FAILURE,
   FEED_FORM_CHANGE,
   FEED_FORM_CLEAR,
+  FEED_CREATE_REQUEST,
+  FEED_CREATE_SUCCESS,
+  FEED_CREATE_FAILURE,
 } from './constants';
 
 export const feedListRequest = () => ({
@@ -27,4 +30,18 @@ export const feedFormChange = form => ({
 
 export const feedFormClear = () => ({
   type: FEED_FORM_CLEAR,
+});
+
+export const feedCreateRequest = form => ({
+  type: FEED_CREATE_REQUEST,
+  form,
+});
+
+export const feedCreateSuccess = () => ({
+  type: FEED_CREATE_SUCCESS,
+});
+
+export const feedCreateFailure = error => ({
+  type: FEED_CREATE_FAILURE,
+  error,
 });

@@ -8,7 +8,7 @@ import injectReducer from '../../utils/injectReducer';
 import injectSaga from '../../utils/injectSaga';
 import saga from './saga';
 import reducer from './reducer';
-import { feedListRequest, feedFormChange } from './actions';
+import { feedListRequest, feedFormChange, feedCreateRequest } from './actions';
 import { makeSelectFeedPage } from './selectors';
 import PageContent from '../../components/_common/Layout/PageContent/AuthPageContent';
 import NavContainer from '../NavContainer';
@@ -22,7 +22,7 @@ class FeedPage extends Component {
   }
 
   render() {
-    const { feedFormChange } = this.props;
+    const { feedFormChange, feedCreateRequest } = this.props;
     const { feeds, feedForm } = this.props.feedPage;
     return (
       <Fragment>
@@ -32,7 +32,12 @@ class FeedPage extends Component {
             <title>Лента</title>
             <meta name="description" content="Description of FeedPage" />
           </Helmet>
-          <FeedList feeds={feeds} feedForm={feedForm} feedFormChange={feedFormChange} />
+          <FeedList
+            feeds={feeds}
+            feedForm={feedForm}
+            feedCreateRequest={feedCreateRequest}
+            feedFormChange={feedFormChange}
+          />
         </PageContent>
         <NavContainer />
       </Fragment>
@@ -44,6 +49,7 @@ FeedPage.propTypes = {
   feedPage: PropTypes.object,
   feedListRequest: PropTypes.func,
   feedFormChange: PropTypes.func,
+  feedCreateRequest: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -54,6 +60,7 @@ function mapDispatchToProps(dispatch) {
   return {
     feedListRequest: () => dispatch(feedListRequest()),
     feedFormChange: ev => dispatch(feedFormChange(ev)),
+    feedCreateRequest: ev => dispatch(feedCreateRequest(ev)),
   };
 }
 const withConnect = connect(
