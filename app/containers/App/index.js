@@ -27,6 +27,8 @@ import ProfilePage from '../ProfilePage';
 import FeedPage from '../FeedPage';
 import TradePage from '../TradePage';
 import injectReducer from '../../utils/injectReducer';
+import auth from '../../utils/auth';
+import NotificationManager from '../NotificationManager';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -50,6 +52,11 @@ class App extends Component {
           <Helmet titleTemplate="%s - J-Trading" defaultTitle="J-Trading">
             <meta name="description" content="J-Trading" />
           </Helmet>
+          {auth.getToken() !== null ? (
+            <>
+              <NotificationManager />
+            </>
+          ) : null}
           <MainWrapper>
             <Switch>
               <AuthRoute exact path="/login" component={AuthPage} />
