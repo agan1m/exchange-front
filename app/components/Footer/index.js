@@ -6,7 +6,7 @@ import Img from './Img';
 import { FooterWrap, Container, A } from './Wrapper';
 import logo from '../../images/Logo-white.svg';
 
-function Footer({ menu = [] }) {
+function Footer({ menu = [], selectItem = {} }) {
   return (
     <FooterWrap>
       <Container>
@@ -15,7 +15,7 @@ function Footer({ menu = [] }) {
         </A>
         <NavBar>
           {menu.map(item => (
-            <HeaderLink key={item.name} to={item.link}>
+            <HeaderLink active={selectItem.link === item.link} key={item.name} to={item.link}>
               {item.name}
             </HeaderLink>
           ))}
@@ -28,6 +28,7 @@ function Footer({ menu = [] }) {
 
 Footer.propTypes = {
   menu: PropTypes.array,
+  selectItem: PropTypes.object,
 };
 
 export default Footer;

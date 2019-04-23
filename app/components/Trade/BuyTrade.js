@@ -3,6 +3,16 @@ import { TradeTitle, BuyTradeField, BuyTradeWrap, BuyTradeBtn, CurrencyName } fr
 
 /* eslint-disable */
 class BuyTrade extends Component {
+  state = {
+    btc: 0,
+    usd: 0,
+    etc: 0,
+  };
+  _handlerTradeAction = (ev, operationType) => {
+    const { tradeOperationRequest } = this.props;
+    tradeOperationRequest({ operationType, form: { ...this.state } });
+  };
+
   render() {
     return (
       <div>
@@ -19,14 +29,16 @@ class BuyTrade extends Component {
               <span>54.43</span>
               <CurrencyName>$</CurrencyName>
             </BuyTradeField>
-            <BuyTradeBtn danger={true}>Продать</BuyTradeBtn>
+            <BuyTradeBtn onClick={ev => this._handlerTradeAction(ev, 'sell')} danger={true}>
+              Продать
+            </BuyTradeBtn>
           </BuyTradeWrap>
           <BuyTradeWrap>
             <BuyTradeField>
               <span>54.43</span>
               <CurrencyName>$</CurrencyName>
             </BuyTradeField>
-            <BuyTradeBtn>Купить</BuyTradeBtn>
+            <BuyTradeBtn onClick={ev => this._handlerTradeAction(ev, 'buy')}>Купить</BuyTradeBtn>
           </BuyTradeWrap>
         </div>
       </div>

@@ -17,7 +17,7 @@ function* loginSaga(action) {
       auth.setToken(response.data.token);
       yield put(loginSuccess());
       yield put(setUser({ user: response.data.user, bill: response.data.bill }));
-      history.push('/home');
+      history.push('/trade');
     } else {
       yield put(loginFailure(response.message));
     }

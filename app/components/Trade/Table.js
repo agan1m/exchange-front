@@ -17,7 +17,7 @@ class TableComponent extends Component {
         key: 'age',
       },
       {
-        title: 'UTC',
+        title: 'USD',
         dataIndex: 'address',
         key: 'address',
       },

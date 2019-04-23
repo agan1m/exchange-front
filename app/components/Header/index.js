@@ -20,7 +20,7 @@ import {
 /* eslint-disable react/prefer-stateless-function */
 class Header extends React.Component {
   render() {
-    const { email, logOut } = this.props;
+    const { email, logOut, selectItem = {} } = this.props;
     return (
       <FooterWrap>
         <HeaderContainer>
@@ -28,7 +28,9 @@ class Header extends React.Component {
             <Img src={logo} alt="Logo" />
           </A>
           <NavBar>
-            <HeaderLink to="/trade">Торги</HeaderLink>
+            <HeaderLink active={selectItem.link === '/trade'} to="/trade">
+              Торги
+            </HeaderLink>
           </NavBar>
           <CourseWrap>
             <CourseItem>
@@ -47,13 +49,13 @@ class Header extends React.Component {
             </CourseItem>
           </CourseWrap>
           <PersonalInfoContainer>
-            <PersonalItem>
+            <PersonalItem active={selectItem.link === '/feed'}>
               <Link to="/feed">Лента</Link>
             </PersonalItem>
-            <PersonalItem>
+            <PersonalItem active={selectItem.link === '/places'}>
               <Link to="/places">3 место</Link>
             </PersonalItem>
-            <PersonalItemEmail>
+            <PersonalItemEmail active={selectItem.link === '/profile'}>
               <Link to="/profile">{email}</Link>
               <DropdownContent>
                 <LogoutBtn type="button" onClick={logOut}>
@@ -70,6 +72,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   email: PropTypes.string,
+  selectItem: PropTypes.object,
   logOut: PropTypes.func,
 };
 

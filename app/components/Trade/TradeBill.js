@@ -4,20 +4,22 @@ import { TradeTitle, TradeBillWrapper, TradeBillCount } from './Wrappers';
 /* eslint-disable */
 class TradeBill extends Component {
   render() {
+    const { bill = {} } = this.props;
+    const { btc, etc, dollars } = bill;
     return (
       <div style={{ marginBottom: 60 }}>
         <TradeTitle>Ваш счет</TradeTitle>
         <div>
           <TradeBillWrapper>
-            <TradeBillCount>12.12332</TradeBillCount>
+            <TradeBillCount>{etc || 0}</TradeBillCount>
             <span>ETC</span>
           </TradeBillWrapper>
           <TradeBillWrapper>
-            <TradeBillCount>12.12332</TradeBillCount>
+            <TradeBillCount>{btc || 0}</TradeBillCount>
             <span>BTC</span>
           </TradeBillWrapper>
           <TradeBillWrapper>
-            <TradeBillCount>12</TradeBillCount>
+            <TradeBillCount>{dollars || 0}</TradeBillCount>
             <span>$</span>
           </TradeBillWrapper>
         </div>

@@ -10,15 +10,24 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { makeSelectCurrentUser } from '../App/selectors';
 import { logOut } from './actions';
+
 /* eslint-disable */
 class NavContainer extends Component {
   render() {
     const { navContainer, header, user, logOut } = this.props;
-    const { menu } = navContainer;
-    return <Fragment>{header ? <Header email={user.email} logOut={logOut} /> : <Footer menu={menu} />}</Fragment>;
+    const { menu, selectItem } = navContainer;
+    return (
+      <Fragment>
+        {header ? (
+          <Header selectItem={selectItem} email={user.email} logOut={logOut} />
+        ) : (
+          <Footer selectItem={selectItem} menu={menu} />
+        )}
+      </Fragment>
+    );
   }
 }
-/* eslint-enable */
+
 NavContainer.propTypes = {
   navContainer: PropTypes.object,
   user: PropTypes.object,

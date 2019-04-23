@@ -6,14 +6,15 @@ import { TradeWrapper } from './Wrappers';
 /* eslint-disable */
 class Trade extends Component {
   render() {
+    const { bill, loading, tradeOperationRequest } = this.props;
     return (
       <TradeWrapper>
         <div style={{ marginRight: '27%' }}>
-          <TradeBill />
-          <BuyTrade />
+          <TradeBill bill={bill} />
+          <BuyTrade tradeOperationRequest={tradeOperationRequest} />
         </div>
         <div style={{ width: '50%' }}>
-          <Table />
+          <Table loading={loading} />
         </div>
       </TradeWrapper>
     );

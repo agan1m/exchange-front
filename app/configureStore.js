@@ -32,7 +32,7 @@ export default function configureStore(initialState = {}, history) {
   const store = createStore(createReducer(), fromJS(initialState), composeEnhancers(...enhancers));
 
   if (process.env.NODE_ENV !== 'test') {
-    window.persistor = persistStore(store, { whitelist: ['global'] });
+    window.persistor = persistStore(store, { whitelist: ['global', 'navContainer'] });
   }
 
   // Extensions

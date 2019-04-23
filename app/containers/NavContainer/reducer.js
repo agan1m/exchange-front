@@ -10,10 +10,21 @@ export const initialState = fromJS({
     { name: 'Лента', link: '/feed' },
     { name: 'Профиль', link: '/profile' },
   ],
+  selectItem: {},
 });
 
 function navReducer(state = initialState, action) {
   switch (action.type) {
+    case '@@router/LOCATION_CHANGE':
+      return state.set(
+        'selectItem',
+        fromJS(
+          state
+            .get('menu')
+            .toJS()
+            .find(item => item.link === action.payload.location.pathname),
+        ),
+      );
     default:
       return state;
   }

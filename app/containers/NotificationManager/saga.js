@@ -41,6 +41,5 @@ function* socketSaga() {
     }
   } catch (error) {
     window.console.error(error);
-    // yield put(loginFailure('Что-то пошло не так'));
   }
 }

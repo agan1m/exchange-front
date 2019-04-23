@@ -32,12 +32,15 @@ export const PersonalInfoContainer = styled.div`
 `;
 
 export const PersonalItem = styled.p`
-  background-color: #555658;
+  background-color: ${props => (props.active ? '#4b94a9' : '#555658')};
   border: 2px solid #ffffff;
   border-radius: 16px;
   padding: 2px 30px;
   font-weight: 400;
   cursor: pointer;
+  :hover {
+    background-color: #4b94a9;
+  }
   a {
     color: #fff;
     text-decoration: none;
@@ -45,9 +48,10 @@ export const PersonalItem = styled.p`
 `;
 
 export const PersonalItemEmail = styled(PersonalItem)`
-  background-color: #4b94a9;
+  background-color: ${props => (props.active ? '#4b94a9' : '#555658')};
   position: relative;
   :hover {
+    background-color: #4b94a9;
     & div {
       display: block;
     }

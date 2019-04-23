@@ -17,7 +17,7 @@ function* registrationSaga(action) {
       auth.setToken(response.data.token);
       yield put(registrationSuccess());
       yield put(setUser({ user: response.data.user, bill: response.data.bill }));
-      history.push('/home');
+      history.push('/trade');
     } else {
       yield put(registrationFailure(response.message));
     }
